@@ -1,0 +1,11 @@
+Below I will provide a job posting.
+
+Based on the text of the job posting, tell me the full job title.
+
+I want a clear job title. For example, instead of "proj anl 3", I want "Project Analyst 3".
+
+I only want the job title. For example, instead of "Research Data Scientist 2, Bioinformatics (Health Sciences Library)", I want "Research Data Scientist 2, Bioinformatics". Another example: when applicable, instead of "Senior Full Stack Developer, IT", I want "Senior Full Stack Developer".
+
+If the job posting doesn't mention the job title, respond "missing".
+
+Here is the job posting:

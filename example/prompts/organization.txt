@@ -1,0 +1,7 @@
+Below I will provide a job posting.
+
+Based on the text of the job posting, tell me the hiring organization.
+
+If the job posting doesn't mention the organization, respond "missing".
+
+Here is the job posting:

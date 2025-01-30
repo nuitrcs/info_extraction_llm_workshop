@@ -1,0 +1,11 @@
+Below I will provide a job posting.
+
+Based on the text of the job posting, tell me the location of the position.
+
+If the location is in the United States, I want the city and the state (e.g., "Evanston, IL").
+
+If the location is outside of the United States, I want the city and the country (e.g., "Berlin, Germany") and, if mentioned in the job posting, the state as well (e.g., "Toronto, Ontario, Canada"). 
+
+If the job posting doesn't mention the location, respond "missing".
+
+Here is the job posting:

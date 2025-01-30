@@ -1,0 +1,23 @@
+Below I will provide a job posting.
+
+Based on the text of the job posting, tell me whether the hiring organization can sponsor a visa or work authorization for international workers.
+
+Your response should be one of “yes”, “no”, or “missing”.
+
+If the job posting mentions that the hiring organization is able to sponsor a visa or work authorization for international workers, respond "yes". These are example indications that sponsorship is available:
+- "Visa sponsorship is available"
+- "able to sponsor the employment of international workers in this role"
+- "If you need a visa, we cover most visa costs"
+- "Visa Sponsored Job: Yes"
+
+If the job posting mentions that the hiring organization is not able to sponsor a visa or work authorization for international workers, respond "no". These are example indications that sponsorship is not available:
+- "U.S. citizenship is required"
+- "will not offer visa sponsorship for this opportunity"
+- "will not sponsor employment authorization for this position"
+- "is not a sponsoring agency for staff or management positions (e.g., H-1B visa). Applicants must currently be authorized to work in the United States"
+
+Keep in mind that this information is typically buried in the job posting, so read very carefully every detail.
+
+If the job posting doesn't mention anything about visa or work authorization for international workers, respond "missing".
+
+Here is the job posting:

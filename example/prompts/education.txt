@@ -1,0 +1,11 @@
+Below I will provide a job posting.
+
+Based on the text of the job posting, tell me the minimum education required for the position.
+
+Your response should be one of "associate", "bachelor", "master", "phd", or “missing”.
+
+Keep in mind that it's the minimum education required. For example, for "Minimum Education Bachelor's degree is required. Master's degree or PHD is preferred", the answer would be "bachelor".
+
+If the job posting doesn't mention anything about the minimum education required, respond "missing".
+
+Here is the job posting:
