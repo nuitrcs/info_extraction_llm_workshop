@@ -1,2 +1,1 @@
-# info_extraction_llm_workshop
-Repo to prepare workshop on information extraction with LLMs
+Repo for a workshop on information extraction with LLMs taught by [Research Computing and Data Services](https://www.it.northwestern.edu/departments/it-services-support/research/).
