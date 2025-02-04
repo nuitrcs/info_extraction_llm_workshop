@@ -86,7 +86,7 @@ def get_matches(list_keywords, text, case_sensitive=False, char_before=CHARACTER
 
         # Check if any of the skill keywords are in the surrounding text
         if any(keyword in surrounding_text for keyword in KEYWORDS_SKILLS):
-            matches_list.append(match.group())
+            matches_list.append(match.group() if case_sensitive else match.group().lower())
         
     # Return unique elements in alphabetical order
     return sorted(list(set(matches_list)))
@@ -153,6 +153,264 @@ def extract_programming_languages(text, char_before=CHARACTERS_AROUND_MATCH, cha
     # Return clean matches
     return sorted(list(set(matches_clean)))
 
+def extract_stats_skills(text, char_before=CHARACTERS_AROUND_MATCH, char_after=CHARACTERS_AROUND_MATCH):
+    """
+    Function to extract skills in statistics.
+
+    Input: text (str) - Text of a job posting.
+    Output: stats_skills (list of str) - List of statistical skills.
+    """
+    # List of statistical skills
+    stats_skills = [
+        "statistics",
+        "statistical analysis",
+        "statistical modeling",
+        "bayesian",
+        "regression analysis",
+        "regression modeling",
+        "regression",
+        "anova",
+        "time series",
+        "panel",
+        "survival analysis",
+        "hypothesis testing",
+        "experimental design",
+        "experimental analysis",
+        "sampling",
+        "causal inference"
+    ]
+
+    matches = get_matches(stats_skills, text, case_sensitive=False, char_before=char_before, char_after=char_after, word_boundaries=False)
+
+    # Return clean matches
+    return sorted(list(set(matches)))
+
+def extract_ml_ai_skills(text, char_before=CHARACTERS_AROUND_MATCH, char_after=CHARACTERS_AROUND_MATCH):
+    """
+    Function to extract skills in machine learning and artificial intelligence.
+
+    Input: text (str) - Text of a job posting.
+    Output: ml_ai_skills (list of str) - List of ML and AI skills.
+    """
+    # List of ML and AI skills
+    ml_ai_skills = [
+        "machine learning",
+        "artificial intelligence",
+        " ai ",
+        " ai,",
+        "/ai",
+        "ai/",
+        "deep learning",
+        "neural networks",
+        "computer vision",
+        "natural language processing",
+        "reinforcement learning",
+        "unsupervised learning",
+        "supervised learning",
+        "clustering",
+        "classification",
+        "regression",
+        "random forest",
+        "gradient boosting",
+        "boosted trees",
+        "boosting",
+        "decision trees",
+        "ensemble learning",
+        "feature engineering",
+        "feature selection",
+        "model selection",
+        "model evaluation",
+        "model deployment",
+        "Scikit-Learn",
+        "sklearn",
+        "Scikit Learn",
+        "TensorFlow",
+        "Keras",
+        "PyTorch"
+    ]
+
+    # Get matches
+    matches = get_matches(ml_ai_skills, text, case_sensitive=False, char_before=char_before, char_after=char_after, word_boundaries=False)
+
+    # Treat these as "ai": " ai ", " ai,", "/ai", "ai/", otherwise leave the match as is
+    matches = ["ai" if match in [" ai ", " ai,", "/ai", "ai/", "artificial intelligence"] else match for match in matches]
+
+    # Treat these as Scikit-Learn: "sklearn", "Scikit Learn"
+    matches = ["scikit-learn" if match in ["sklearn", "scikit learn"] else match for match in matches]
+
+    # Return clean matches
+    return sorted(list(set(matches)))
+
+def extract_swe_skills(text, char_before=CHARACTERS_AROUND_MATCH, char_after=CHARACTERS_AROUND_MATCH):
+    """
+    Function to extract skills in software engineering.
+
+    Input: text (str) - Text of a job posting.
+    Output: swe_skills (list of str) - List of software engineering skills.
+    """
+    # List of software engineering skills
+    swe_skills = [
+        "CI/CD",
+        "continuous integration",
+        "continuous deployment",
+        "version control",
+        "git",
+        "github",
+        "gitlab",
+        "docker",
+        "kubernetes",
+        "microservices",
+        "RESTful",
+        "API",
+        "web development",
+        "backend",
+        "frontend",
+        "full stack",
+        "cloud",
+        "AWS",
+        "Azure",
+        "Google Cloud",
+        "GCP",
+        "serverless",
+        "agile",
+        "scrum",
+        "kanban",
+        "devops",
+        "testing",
+        "unit testing",
+        "integration testing",
+        "end-to-end testing",
+        "object oriented programming",
+        "functional programming",
+        "design patterns",
+        "refactoring",
+        "code review",
+        "architecture",
+        "scalability",
+        "scalable",
+        "scale",
+        "security",
+        "automation",
+        "monitoring",
+        "logging",
+        "profiling",
+        "debugging",
+        "troubleshooting",
+        "algorithms",
+        "data structures",
+        "parallel computing",
+        "parallelism",
+        "parallel processing",
+        "parallelization",
+        "MPI",
+        "OpenMP",
+        "CUDA",
+        "GPU",
+        "concurrency",
+        "slurm",
+        "hpc",
+        "high performance computing",
+        "high-performance computing",
+        "distributed computing",
+        "distributed systems",
+        "supercomputing",
+        "supercomputer",
+        "grid computing",
+        "workflow automation",
+        "pipeline automation",
+        "container",
+        "documentation",
+        "maintenance",
+        "maintainability",
+        "maintainable",
+        "legacy",
+        "technical debt"
+    ]
+
+    # Get matches
+    matches = get_matches(swe_skills, text, case_sensitive=False, char_before=char_before, char_after=char_after, word_boundaries=False)
+
+    # Treat these as "hpc": "high performance computing", "high-performance computing", "supercomputing", "supercomputer", "grid computing"
+    matches = ["hpc" if match in ["high performance computing", "high-performance computing", "supercomputing", "supercomputer", "grid computing"] else match for match in matches]
+
+    # Treat these as "testing": "unit testing", "integration testing", "end-to-end testing"
+    matches = ["testing" if match in ["unit testing", "integration testing", "end-to-end testing"] else match for match in matches]
+
+    # Treat these as "parallel computing": "parallel computing", "parallelism", "parallel processing", "parallelization"
+    matches = ["parallel computing" if match in ["parallel computing", "parallelism", "parallel processing", "parallelization"] else match for match in matches]
+
+    # Treat these as "distributed computing": "distributed computing", "distributed systems"
+    matches = ["distributed computing" if match in ["distributed computing", "distributed systems"] else match for match in matches]
+
+    # Treat these as "automation": "workflow automation", "pipeline automation"
+    matches = ["automation" if match in ["workflow automation", "pipeline automation"] else match for match in matches]
+
+    # Treat these as maintainable: "maintainability", "maintainable"
+    matches = ["maintainable" if match in ["maintainability", "maintainable"] else match for match in matches]
+
+    # Treat these as scale: "scalability", "scalable", "scale"
+    matches = ["scale" if match in ["scalability", "scalable", "scale"] else match for match in matches]
+
+    # Treat these as google cloud: "Google Cloud", "gcp"
+    matches = ["google cloud" if match in ["google cloud", "gcp"] else match for match in matches]
+
+    # Return clean matches
+    return sorted(list(set(matches)))
+
+def extract_soft_skills(text, char_before=CHARACTERS_AROUND_MATCH, char_after=CHARACTERS_AROUND_MATCH):
+    """
+    Function to extract soft skills from text.
+
+    Input: text (str) - Text of a job posting.
+    Output: soft_skills (list of str) - List of soft skills.
+    """
+    # List of soft skills
+    soft_skills = [
+        "communication",
+        "teamwork",
+        "collaboration",
+        "problem solving",
+        "critical thinking",
+        "creativity",
+        "adaptability",
+        "flexibility",
+        "resilience",
+        "emotional intelligence",
+        "empathy",
+        "leadership",
+        "lead",
+        "organization",
+        "time management",
+        "project management",
+        "prioritization",
+        "decision making",
+        "negotiation",
+        "conflict resolution",
+        "conflict management",
+        "listening",
+        "patience",
+        "persistence",
+        "motivation",
+        "initiative",
+        "self-motivation",
+        "coordinat",
+        "oversee",
+        "supervise",
+        "facilitat",
+        "recruit",
+        "liais",
+        "mentor"
+    ]
+
+    # Get matches
+    matches = get_matches(soft_skills, text, case_sensitive=False, char_before=char_before, char_after=char_after, word_boundaries=False)
+
+    # Treat these as collaboration: "collaboration", "teamwork"
+    matches = ["collaboration" if match in ["collaboration", "teamwork"] else match for match in matches]
+
+    # Return clean matches
+    return sorted(list(set(matches)))
+
 if __name__ == "__main__":
     print("Module to extract skills from job postings running as main script.")
     print("Running tests...")
@@ -198,6 +456,11 @@ if __name__ == "__main__":
     print(get_matches(["R"], text, case_sensitive=True, char_before=CHARACTERS_AROUND_MATCH, char_after=CHARACTERS_AROUND_MATCH))
     assert get_matches(["R"], text, case_sensitive=True, char_before=CHARACTERS_AROUND_MATCH, char_after=CHARACTERS_AROUND_MATCH) == []
 
+    print("Test 4")
+    text = "The candidate must have experience with hypothesis testing and time series analysis. bayesian Bayesian"
+    print(get_matches(["hypothesis testing", "time series", "bayesian"], text, case_sensitive=False, char_before=CHARACTERS_AROUND_MATCH, char_after=CHARACTERS_AROUND_MATCH))
+    assert get_matches(["hypothesis testing", "time series", "bayesian"], text, case_sensitive=False, char_before=CHARACTERS_AROUND_MATCH, char_after=CHARACTERS_AROUND_MATCH) == ['bayesian', 'hypothesis testing', 'time series']
+
     ##################################################################################
     print("Tests for extract_programming_languages function:")
 
@@ -215,6 +478,27 @@ if __name__ == "__main__":
     text = "The Candidate must have experience with python, r, and sql."
     print(extract_programming_languages(text))
     assert extract_programming_languages(text) == []
+
+    ##################################################################################
+    print("Tests for extract_stats_skills function:")
+
+    print("Test 1")
+    text = "The candidate must have experience with hypothesis testing and time series analysis. bayesian Bayesian"
+    print(extract_stats_skills(text))
+    assert extract_stats_skills(text) == ['bayesian', 'hypothesis testing', 'time series']
+
+    ##################################################################################
+    print("Tests for extract_ml_ai_skills function:")
+
+    print("Test 1")
+    text = "The candidate must have experience with machine learning and artificial intelligence and ai and ai/ and ai, ."
+    print(extract_ml_ai_skills(text))
+    assert extract_ml_ai_skills(text) == ['ai', 'machine learning']
+
+    print("Test 2")
+    text = "The candidate must have experience with sklearn scikit-learn scikit learn Scikit-Learn."
+    print(extract_ml_ai_skills(text))
+    assert extract_ml_ai_skills(text) == ['scikit-learn']
 
     ##################################################################################
     print("All tests passed.")
