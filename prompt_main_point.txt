@@ -1,6 +1,8 @@
 Below I will provide the abstract of an article.
 
-Based on the text of the abstract, tell me the main point of the article.
+Based on the text of the abstract, give me a direct citation with the main point of the article (if available).
+
+Instead of summarizing or infering something from the article, I want you to give me a direct citation (if available).
 
 If you are not sure, respond "UNSURE".
 
