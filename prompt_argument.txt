@@ -1,7 +1,0 @@
-Below I will provide the abstract of an article.
-
-Based on the text of the abstract, tell me the argument of the article.
-
-If you are not sure, respond "UNSURE".
-
-Here is the abstract:
